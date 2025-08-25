@@ -145,6 +145,7 @@
     const cheatModeCheckbox = document.getElementById("cheatMode");
     const hands = ["グー", "チョキ", "パー"];
 
+    // 勝敗判定
     function judge(player, cpu){
         if(player == cpu) return "引き分け";
         else if(player == "グー" && cpu == "チョキ") return "勝ち";
@@ -153,12 +154,14 @@
         else return "負け"
     }
 
+    // 負ける手を返す
     function cpuLoseHand(player){
         if(player=="グー") return "チョキ";
         if(player=="チョキ") return "パー";
         if(player=="パー") return "グー";
     }
 
+    // 勝敗に応じてテキストカラーを変える
     function updateResultUI(result){
         resultDisplay.classList.remove("win","lose","draw");
         if(result == "勝ち") resultDisplay.classList.add("win");
@@ -166,6 +169,7 @@
         else resultDisplay.classList.add("draw");
     }
 
+    // チートモードの背景を変える
     cheatModeCheckbox.addEventListener("change",()=>{
         if(cheatModeCheckbox.checked){
             document.body.classList.add("cheat-active");
@@ -174,6 +178,7 @@
         }
     })
 
+    // ボタンが押されると結果を表示
     buttons.forEach((button)=>{
         button.addEventListener("click",()=>{
             const playerChoice = button.textContent.split(' ')[1];
@@ -184,6 +189,7 @@
                 cpuChoice = hands[Math.floor(Math.random()*hands.length)];
             }
             const result = judge(playerChoice,cpuChoice);
+            updateResultUI(result);
             resultDisplay.textContent = `あなた: ${playerChoice} / CPU: ${cpuChoice} → ${result}`;
         })
     })
