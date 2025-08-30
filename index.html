@@ -148,10 +148,10 @@
     // 勝敗判定
     function judge(player, cpu){
         if(player == cpu) return "引き分け";
-        else if(player == "グー" && cpu == "チョキ") return "勝ち";
-        else if(player == "パー" && cpu == "グー") return "勝ち";
-        else if(player == "チョキ" && cpu == "パー") return "勝ち";
-        else return "負け"
+        if(player == "グー" && cpu == "チョキ") return "勝ち";
+        if(player == "パー" && cpu == "グー") return "勝ち";
+        if(player == "チョキ" && cpu == "パー") return "勝ち";
+        return "負け"
     }
 
     // 負ける手を返す
